@@ -13,15 +13,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+/*
+    Gets a list of available posts.
+*/
+Route::get('/list', function () {
+    $posts = array(
+        array("id" => 1, "name" => "PHP"),
+        array("id" => 2, "name" => "C#"),
+        array("id" => 3, "name" => "JAVA"),
+        array("id" => 4, "name" => "JavaScript")
+    );
+
+    return view('list', ["posts" => $posts]);
 });
 
 
-Route::get('/salute', function () {
-    return "Hello bro.";
-});
+/*
+    Get a post by id.
+*/
+Route::get('/post/{id}', function ($id) {
+    $posts = array();
+    $posts[] = array("id" => 1, "name" => "PHP", "description" => "Best Language.");
+    $posts[] = array("id" => 2, "name" => "C#", "description" => "Nice Language");
+    $posts[] = array("id" => 3, "name" => "JAVA", "description" => "Nice but verbose Language");
+    $posts[] = array("id" => 4, "name" => "JavaScript", "description" => "Wonderful");
 
-Route::get('/salute/{name}', function ($name) {
-    return "Hello " . $name;
+    $filteredPost = null;
+
+    foreach($posts as $post){
+        if($post["id"] == $id){
+            $filteredPost = $post;
+        }
+    }
+
+    return view("detail", ["post" => $filteredPost]);
 });
