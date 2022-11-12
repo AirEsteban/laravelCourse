@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 
 Route::get('/salute', function () {
-    return "Hola bananero";
+    return "Hello bro.";
 });
 
 Route::get('/salute/{name}', function ($name) {
-    return "Hola " . $name;
+    return "Hello " . $name;
 });
