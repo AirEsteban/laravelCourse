@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,44 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*
-    Gets a list of available posts.
-*/
-// Home view
-Route::get('/', function () {
-    return view("welcome");
-})->name("home");
 
-// List view
-Route::get('/list', function () {
-    $posts = array(
-        array("id" => 1, "name" => "PHP"),
-        array("id" => 2, "name" => "C#"),
-        array("id" => 3, "name" => "JAVA"),
-        array("id" => 4, "name" => "JavaScript")
-    );
+// Moving the flow to controllers and not via this file
+// Creating a group to manage all the requests that belongs to Page Controller
 
-    return view('list', ["posts" => $posts]);
-})->name("list");
-
-
-/*
-    Get a post by id.
-*/
-Route::get('/post/{id}', function ($id) {
-    $posts = array();
-    $posts[] = array("id" => 1, "name" => "PHP", "description" => "Best Language.");
-    $posts[] = array("id" => 2, "name" => "C#", "description" => "Nice Language");
-    $posts[] = array("id" => 3, "name" => "JAVA", "description" => "Nice but verbose Language");
-    $posts[] = array("id" => 4, "name" => "JavaScript", "description" => "Wonderful");
-
-    $filteredPost = null;
-
-    foreach($posts as $post){
-        if($post["id"] == $id){
-            $filteredPost = $post;
-        }
-    }
-
-    return view("detail", ["post" => $filteredPost]);
-})->name("post");
+Route::controller(PageController::class)->group(function () {
+    Route::get('/', "home")->name("home");
+    Route::get('/list', "list")->name("list");
+    Route::get('/post/{id}', "post")->name("post");
+});
