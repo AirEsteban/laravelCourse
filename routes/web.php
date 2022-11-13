@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 /*
     Gets a list of available posts.
 */
+// Home view
+Route::get('/', function () {
+    return view("welcome");
+})->name("home");
+
+// List view
 Route::get('/list', function () {
     $posts = array(
         array("id" => 1, "name" => "PHP"),
@@ -25,7 +31,7 @@ Route::get('/list', function () {
     );
 
     return view('list', ["posts" => $posts]);
-});
+})->name("list");
 
 
 /*
@@ -47,4 +53,4 @@ Route::get('/post/{id}', function ($id) {
     }
 
     return view("detail", ["post" => $filteredPost]);
-});
+})->name("post");
