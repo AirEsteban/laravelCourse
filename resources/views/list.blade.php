@@ -5,6 +5,10 @@
         <a href="{{ route('post', $post) }}">
             <h1>{{ $post->title }}</h1>
         </a>
+        <br/>
+        <span>
+            {{$post->user->name}}
+        </span>
     @endforeach
 @endsection
 
