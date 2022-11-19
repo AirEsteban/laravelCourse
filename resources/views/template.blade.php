@@ -9,6 +9,11 @@
 <body>
     <a href="{{ route('home') }}">Home</a>
     <a href="{{ route('list') }}">List</a>
+    @auth
+    <a href="{{ route('dashboard') }}">Dashboard</a>
+    @else
+    <a href="{{ route('login') }}">Login</a>
+    @endauth
     <hr/>
     <div class="container">
         @yield("content")
