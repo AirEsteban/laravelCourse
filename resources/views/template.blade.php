@@ -7,7 +7,6 @@
     <title>Language list</title>
 </head>
 <body>
-    <a href="{{ route('home') }}">Home</a>
     <a href="{{ route('list') }}">List</a>
     @auth
     <a href="{{ route('dashboard') }}">Dashboard</a>

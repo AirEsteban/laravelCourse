@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    function home(){
-        return view("welcome");
-    }
-
     function list(){
         $posts = Post::latest()->paginate(15);
         return view('list', ["posts" => $posts]);
